@@ -1,11 +1,12 @@
 #ifndef ARRAY2D_H
 #define ARRAY2D_H
 #include <iostream>
+#include "Exception.h"
 
 template<typename T>
 class Array2D
 {
-private:
+protected:
 	T** m_array;
 	int m_rows;
 	int m_columns;
@@ -33,13 +34,16 @@ public:
 	private:
 		T* arr = nullptr;
 	};
+
 	Row<T> & operator[](int index){ 
+		if (index < m_rows || index > m_rows)
+			throw(Exception("Rows out of bounds! Please try again!"));
+		if (index < m_columns || index > m_columns)
+			throw(Exception("Columns out of bounds! Please try again!"));
 		Row<T> object(m_array[index]);
 		return object;
 	}
 };
-
-
 
 template<typename T>
 inline Array2D<T>::Array2D(const int rows, const int columns)

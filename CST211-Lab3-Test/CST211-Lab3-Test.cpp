@@ -10,42 +10,20 @@ const char* NAMES[] = { "Kyle", "Brit", "seth", "Alex", "Josh", "Kian",
 
 int main() {
 
-		bool pass = true;
-		int row = 3;
-		int col = 5;
-		int num = 0;
-		int temp = 0;
+		bool pass = false;
 	
-		int num_elements = 15;
+		Array2D<int> val_len(5, 10);
 	
-		int test_data[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-	
-		Array2D<int> val_len(row, col);
-	
-		for (int i(0); i < val_len.getRow(); i++)
+		try
 		{
-			for (int j(0); j < val_len.getColumns(); j++)
-				val_len[i][j] = num++;
+			val_len[1][-5] = 0;
+		}
+		catch (Exception& exception)
+		{
+			pass = true;
 		}
 	
-		Array2D<int> val_len_cpy;
-	
-		val_len_cpy = val_len;
-	
-		num = 0;
-	
-		for (int i(0); i < val_len_cpy.getRow() && pass; i++)
-		{
-			for (int j(0); j < val_len_cpy.getColumns() && pass; j++)
-			{
-				temp = val_len_cpy[i][j];
-	
-				if (temp != test_data[num++])
-					pass = false;
-			}
-		}
-	
-		cout << "Op eql test ";
+		cout << "Negative row test ";
 	
 		cout <<  pass;
 
