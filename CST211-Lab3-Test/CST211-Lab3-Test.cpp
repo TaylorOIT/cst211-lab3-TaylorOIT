@@ -28,7 +28,9 @@ int main() {
 				val_len[i][j] = num++;
 		}
 	
-		Array2D<int> val_len_cpy(val_len);
+		Array2D<int> val_len_cpy;
+	
+		val_len_cpy = val_len;
 	
 		num = 0;
 	
@@ -43,7 +45,7 @@ int main() {
 			}
 		}
 	
-		cout << "Copy ctor test ";
+		cout << "Op eql test ";
 	
 		cout <<  pass;
 

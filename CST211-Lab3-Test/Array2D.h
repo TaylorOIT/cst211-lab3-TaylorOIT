@@ -10,10 +10,10 @@ private:
 	int m_rows;
 	int m_columns;
 public:
-	Array2D() : m_array(nullptr), m_rows(0), m_columns(0) {}
-	Array2D(const int rows, const int columns); // default constructor
+	Array2D() : m_array(nullptr), m_rows(0), m_columns(0) {} // default ctor
+	Array2D(const int rows, const int columns); // two param constructor
 	Array2D(const Array2D& copy); // copy constructor
-	//Array2D& operator =(const Array2D& rhs); // copy assignment
+	Array2D& operator =(const Array2D& rhs); // copy assignment
 	~Array2D(); // destructor
 
 	int getRow() const; // getter function for rows
@@ -73,9 +73,40 @@ inline Array2D<T>::Array2D(const Array2D& copy)
 		}
 	}
 	// copies the values assigned to each of the 2D array elements
-	
 
-	std::cout << "copied!" << std::endl;
+}
+
+template <typename T>
+Array2D<T>& Array2D<T>::operator = (const Array2D<T>& rhs)
+{
+	if (this != &rhs)
+	{
+		for (int i = 0; i < m_rows; ++i) {
+			delete[] m_array[i];
+		}
+		delete[] m_array;
+		m_array = nullptr;
+		// delete the entire 2D array
+
+		m_rows = rhs.m_rows;
+		m_columns = rhs.m_columns;
+
+		m_array = new T * [m_rows];
+		for (int i = 0; i < m_rows; ++i) {
+			m_array[i] = new T[m_columns];
+		}
+		// initializes the object with the copied objects rows and columns
+
+		for (int i = 0; i < m_rows; i++)
+		{
+			for (int j = 0; j < m_columns; j++)
+			{
+				m_array[i][j] = rhs.m_array[i][j];
+			}
+		}
+		// copies the values assigned to each of the 2D array elements
+	}
+	return *this;
 }
 
 template<typename T>
