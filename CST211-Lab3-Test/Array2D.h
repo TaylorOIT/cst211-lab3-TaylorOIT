@@ -58,7 +58,7 @@ inline Array2D<T>::Array2D(const Array2D& copy)
 {
 	m_rows = copy.m_rows;
 	m_columns = copy.m_columns;
-	
+
 	m_array = new T * [m_rows];
 	for (int i = 0; i < m_rows; ++i) {
 		m_array[i] = new T[m_columns];
