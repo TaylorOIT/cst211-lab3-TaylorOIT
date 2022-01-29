@@ -13,8 +13,8 @@ private:
 	friend class Array2D<T>;
 public:
 	Column(T* arr) : arr(arr) {}
-	T& operator[](int index) {
-		if (index < 0)
+	T& operator[](int index ) {
+		if (index < 0 || index > CURRENT_COLUMN)
 			throw(Exception("Column out of bounds! Please try again!"));
 		return arr[index];
 	};

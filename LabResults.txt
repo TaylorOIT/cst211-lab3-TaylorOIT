@@ -1,7 +1,7 @@
 Negative row test passed
 Negative column test passed
 Upper bounds row test passed
-Upper bounds column test ***** failed *****
+Upper bounds column test passed
 Default ctor test passed
 2 arg ctor test passed
 set row test passed
@@ -16,7 +16,7 @@ Decrease cols with data test passed
 Negative row test complex passed
 Negative column test complex passed
 Upper bounds row test complex passed
-Upper bounds column test complex ***** failed *****
+Upper bounds column test complex passed
 Default ctor test complex passed
 2 arg ctor test complex passed
 set row test complex passed

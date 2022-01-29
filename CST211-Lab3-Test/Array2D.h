@@ -1,9 +1,10 @@
+int CURRENT_COLUMN = 0;
+
 #ifndef ARRAY2D_H
 #define ARRAY2D_H
 #include <iostream>
 #include "Exception.h"
 #include "Column.h"
-
 
 template <typename T>
 class Column;
@@ -40,6 +41,8 @@ inline Array2D<T>::Array2D(const int rows, const int columns)
 {
 	m_rows = rows;
 	m_columns = columns;
+
+	CURRENT_COLUMN = columns;
 	
 	m_array = new T * [m_rows];
 	for (int i = 0; i < m_rows; ++i) {
@@ -137,6 +140,8 @@ inline int Array2D<T>::getColumns() const
 template<typename T>
 inline void Array2D<T>::setColumns(int columns)
 {
+	CURRENT_COLUMN = columns;
+
 	T** temp = new T * [m_rows];
 	for (int i = 0; i < m_rows; ++i) {
 		temp[i] = new T[columns];
