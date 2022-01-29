@@ -1,1 +1,30 @@
-RunResults
+Negative row test passed
+Negative column test passed
+Upper bounds row test passed
+Upper bounds column test ***** failed *****
+Default ctor test passed
+2 arg ctor test passed
+set row test passed
+set col test passed
+Adding data test passed
+Copy ctor test passed
+Op eql test passed
+Increase rows with data test passed
+Decrease rows with data test passed
+Increase cols with data test passed
+Decrease cols with data test passed
+Negative row test complex passed
+Negative column test complex passed
+Upper bounds row test complex passed
+Upper bounds column test complex ***** failed *****
+Default ctor test complex passed
+2 arg ctor test complex passed
+set row test complex passed
+set col test complex passed
+Adding data test complex passed
+Copy ctor test complex passed
+Op eql test complex passed
+Increase rows with data test complex passed
+Decrease rows with data test complex passed
+Increase cols with data test complex passed
+Decrease cols with data test complex passed
