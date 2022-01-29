@@ -19,6 +19,4 @@ public:
 		return arr[index];
 	};
 };
-
-
 #endif
