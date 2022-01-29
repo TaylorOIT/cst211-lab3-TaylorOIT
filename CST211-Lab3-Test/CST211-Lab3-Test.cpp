@@ -1,30 +1,3 @@
-//#include <iostream>
-//#include "Array2D.h"
-//#include <string>
-//using std::string;
-//using std::cout;
-//
-//const char* NAMES[] = { "Kyle", "Brit", "seth", "Alex", "Josh", "Kian",
-//"Kate", "Terry", "Ann", "Elaine", "Stephanie", "Wanda", "Oscar",
-//"Oliver", "Tobey" };
-//
-//int main() {
-//	bool pass = true;
-//		int new_col_val = 15;
-//	
-//		Array2D<int> val_len(3, 5);
-//	
-//		val_len.setColumns(new_col_val);
-//	
-//		if (val_len.getColumns() != new_col_val)
-//			pass = false;
-//	
-//		cout << "set col test ";
-//	cout << pass;
-//}
-//
-//
-//
 #define _CRTDBG_MAP_ALLOC
 
 typedef bool(*FunctionPointer)();  // Define a funtion pointer type
