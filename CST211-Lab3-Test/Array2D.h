@@ -2,48 +2,36 @@
 #define ARRAY2D_H
 #include <iostream>
 #include "Exception.h"
+#include "Column.h"
+
+
+template <typename T>
+class Column;
 
 template<typename T>
 class Array2D
 {
-protected:
+private:
 	T** m_array;
 	int m_rows;
 	int m_columns;
+	friend class Column<T>;
 public:
 	Array2D() : m_array(nullptr), m_rows(0), m_columns(0) {} // default ctor
 	Array2D(const int rows, const int columns); // two param constructor
 	Array2D(const Array2D& copy); // copy constructor
 	Array2D& operator =(const Array2D& rhs); // copy assignment
+	Column<T>& operator[](int index);
 	~Array2D(); // destructor
 
 	int getRow() const; // getter function for rows
 	int getColumns() const; // getter function for columns
 
-	//void setColumns(int columns); // setter function for columns
-	//void setRows(int rows); // setter function for rows
-	//T& Select(const int desired_row, const int desired_column) const; // select for row and column
+	void setColumns(int columns); // setter function for columns
+	void setRows(int rows); // setter function for rows
 
-   //Row operator[](int index) { return Row(m_array[index]); }
-
-	template<typename T>
-	class Row {
-	public:
-		Row(T* arr) : arr(arr) {}
-		T & operator[](int index) { return arr[index]; }
-	private:
-		T* arr = nullptr;
-	};
-
-	Row<T> & operator[](int index){ 
-		if (index < m_rows || index > m_rows)
-			throw(Exception("Rows out of bounds! Please try again!"));
-		if (index < m_columns || index > m_columns)
-			throw(Exception("Columns out of bounds! Please try again!"));
-		Row<T> object(m_array[index]);
-		return object;
-	}
 };
+
 
 template<typename T>
 inline Array2D<T>::Array2D(const int rows, const int columns)
@@ -81,7 +69,7 @@ inline Array2D<T>::Array2D(const Array2D& copy)
 }
 
 template <typename T>
-Array2D<T>& Array2D<T>::operator = (const Array2D<T>& rhs)
+inline Array2D<T>& Array2D<T>::operator = (const Array2D<T>& rhs)
 {
 	if (this != &rhs)
 	{
@@ -114,6 +102,15 @@ Array2D<T>& Array2D<T>::operator = (const Array2D<T>& rhs)
 }
 
 template<typename T>
+Column<T>& Array2D<T>::operator[](int index)
+{
+	if (index < 0 || index > m_rows)
+		throw(Exception("Row out of bounds! Please try again!"));
+	Column<T> object(m_array[index]);
+	return object;
+}
+
+template<typename T>
 inline Array2D<T>::~Array2D()
 {
 	for (int i = 0; i < m_rows; ++i) {
@@ -133,6 +130,85 @@ template<typename T>
 inline int Array2D<T>::getColumns() const
 {
 	return m_columns;
+}
+
+template<typename T>
+inline void Array2D<T>::setColumns(int columns)
+{
+	T** temp = new T * [m_rows];
+	for (int i = 0; i < m_rows; ++i) {
+		temp[i] = new T[columns];
+	}
+
+	if (columns < m_columns)
+	{
+		for (int i = 0; i < m_rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+			{
+				temp[i][j] = m_array[i][j];
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < m_rows; i++)
+		{
+			for (int j = 0; j < m_columns; j++)
+			{
+				temp[i][j] = m_array[i][j];
+			}
+		}
+	}
+
+	for (int i = 0; i < m_rows; ++i) {
+		delete[] m_array[i];
+	}
+	delete[] m_array;
+
+	m_array = temp;
+	m_columns = columns;
+
+}
+
+template<typename T>
+inline void Array2D<T>::setRows(int rows)
+{
+
+	T** temp = new T * [rows];
+	for (int i = 0; i < rows; ++i) {
+		temp[i] = new T[m_columns];
+	}
+
+	if (rows < m_rows)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < m_columns; j++)
+			{
+				temp[i][j] = m_array[i][j];
+			}
+		}
+	}
+	else 
+	{
+		for (int i = 0; i < m_rows; i++)
+		{
+			for (int j = 0; j < m_columns; j++)
+			{
+				temp[i][j] = m_array[i][j];
+			}
+		}
+	}
+
+	for (int i = 0; i < m_rows; ++i) {
+		delete[] m_array[i];
+	}
+	delete[] m_array;
+
+	m_array = temp;
+	m_rows = rows;
+
 }
 
 
