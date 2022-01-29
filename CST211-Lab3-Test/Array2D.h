@@ -30,7 +30,7 @@ public:
 	void setColumns(int columns); // setter function for columns
 	void setRows(int rows); // setter function for rows
 
-	T & Select(const int desired_row, const int desired_column) const;
+	T & Select(const int desired_row, const int desired_column) const; // returns the value of the row and column you select in the 2D Array.
 
 };
 
